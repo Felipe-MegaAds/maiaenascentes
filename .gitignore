@@ -1,0 +1,9 @@
+# Arquivos do sistema operacional e temporários
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Diretórios de IDEs e editores de código
+.vscode/
+.idea/
