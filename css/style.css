@@ -593,15 +593,14 @@ ul, ol {
 }
 
 /* --------------------------------------------------------------------------
-   8. HERO SECTION (IMPACTO, LUXO & BACKGROUND OFICIAL)
-   Imagem oficial hero.png ao fundo com Themis à direita e degradê nobre à esquerda
+   8. HERO SECTION (IMPACTO, LUXO & BACKGROUND OFICIAL SEM OVERLAY)
+   Imagem oficial hero.png pura e nítida ao fundo, sem camadas de degradê
    -------------------------------------------------------------------------- */
 .hero-section {
   position: relative;
   background-color: #140b07;
-  background-image: 
-    linear-gradient(90deg, rgba(20, 11, 7, 0.96) 0%, rgba(20, 11, 7, 0.88) 45%, rgba(20, 11, 7, 0.45) 75%, rgba(20, 11, 7, 0.7) 100%),
-    url('../assets/hero.png');
+  /* Imagem oficial pura de fundo sem overlay ou máscara escurecedora */
+  background-image: url('../assets/hero.png');
   background-position: right center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -614,16 +613,9 @@ ul, ol {
   border-bottom: 2px solid rgba(205, 162, 53, 0.35);
 }
 
-/* Textura e elementos visuais de fundo sutis */
+/* Remoção de overlay pseudo-elemento sobre a imagem da hero */
 .hero-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 80% 40%, rgba(205, 162, 53, 0.08) 0%, transparent 60%);
-  pointer-events: none;
+  display: none;
 }
 
 .hero-content {
@@ -637,6 +629,29 @@ ul, ol {
   z-index: 2;
 }
 
+/* Destaque superior 'Especialistas em Direito Previdenciário' ampliado igual ao título da seção */
+.hero-pretitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-heading);
+  font-size: clamp(1.55rem, 2.4vw, 1.95rem);
+  font-weight: 700;
+  color: var(--color-gold-light);
+  line-height: 1.3;
+  margin-bottom: 18px;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
+}
+
+.hero-pretitle svg {
+  width: 28px;
+  height: 28px;
+  fill: var(--color-gold-base);
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.85));
+}
+
 .hero-title {
   font-family: var(--font-heading);
   font-size: clamp(1.85rem, 3.2vw, 2.55rem);
@@ -645,6 +660,7 @@ ul, ol {
   margin-bottom: 20px;
   color: #ffffff;
   letter-spacing: -0.015em;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
 }
 
 .hero-description {
@@ -653,6 +669,7 @@ ul, ol {
   line-height: 1.7;
   margin-bottom: 34px;
   max-width: 580px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.85);
 }
 
 .hero-actions {
@@ -1033,7 +1050,7 @@ ul, ol {
 }
 
 /* --------------------------------------------------------------------------
-   11. SEÇÃO DIFERENCIAIS (OS 3 MELHORES DIFERENCIAIS)
+   11. SEÇÃO DIFERENCIAIS (OS 4 GRANDES DIFERENCIAIS)
    Destaque com fundo nobre marrom e elegância visual refinada
    -------------------------------------------------------------------------- */
 .differentials-section {
@@ -1045,17 +1062,19 @@ ul, ol {
   border-bottom: 1px solid rgba(205, 162, 53, 0.25);
 }
 
+/* Grid configurado em 4 colunas para acomodar os 4 diferenciais com espaçamento proporcional */
 .differentials-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
 }
 
+/* Card individual de diferencial com efeito aveludado e borda sutil dourada */
 .diff-card {
   background: linear-gradient(160deg, rgba(58, 35, 23, 0.6) 0%, rgba(26, 14, 9, 0.9) 100%);
   border: 1.5px solid rgba(205, 162, 53, 0.28);
   border-radius: var(--border-radius-lg);
-  padding: 44px 32px;
+  padding: 38px 24px;
   position: relative;
   transition: all var(--transition-normal);
   backdrop-filter: blur(8px);
@@ -1698,8 +1717,9 @@ ul, ol {
     gap: 48px;
   }
 
+  /* Grid de diferenciais organizado em 2 colunas para tablets (layout 2x2) */
   .differentials-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
   }
 
@@ -1780,15 +1800,27 @@ ul, ol {
     justify-content: center;
   }
 
-  /* Seção Hero adaptada com enquadramento de imagem otimizado */
+  /* Seção Hero com imagem oficial limpa (sem overlay) em tablets e celulares */
   .hero-section {
-    background-image: 
-      linear-gradient(180deg, rgba(20, 11, 7, 0.94) 0%, rgba(20, 11, 7, 0.88) 100%),
-      url('../assets/hero.png');
+    /* Imagem nítida de fundo sem camada de degradê escurecedor */
+    background-image: url('../assets/hero.png');
     background-position: center top;
     background-size: cover;
     padding: 65px 0 75px 0;
     min-height: auto;
+  }
+
+  /* Ajuste responsivo para o pré-título da hero em telas menores */
+  .hero-pretitle {
+    font-size: 1.35rem;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 14px;
+  }
+
+  .hero-pretitle svg {
+    width: 22px;
+    height: 22px;
   }
 
   .hero-content {
@@ -1813,6 +1845,12 @@ ul, ol {
   .faq-section,
   .contact-location-section {
     padding: 70px 0;
+  }
+
+  /* Grid de diferenciais em coluna única para telas menores que 860px */
+  .differentials-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   /* Seção Sobre em coluna única com moldura fluida */
@@ -1919,6 +1957,13 @@ ul, ol {
   /* Hero Section refinada em celulares */
   .hero-section {
     padding: 50px 0 60px 0;
+  }
+
+  /* Ajuste no tamanho do pré-título da hero em smartphones */
+  .hero-pretitle {
+    font-size: 1.15rem;
+    gap: 8px;
+    margin-bottom: 12px;
   }
 
   .hero-title {
